@@ -1,0 +1,368 @@
+/* CSS Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CSS Variables */
+:root {
+    --background: hsl(240, 10%, 3.9%);
+    --foreground: hsl(0, 0%, 98%);
+    --matrix: #00ff41;
+    --cyan: #0ff;
+    --neon-pink: #ff0080;
+    --terminal-bg: #0a0a0a;
+    --card-bg: #111111;
+}
+
+/* Typography */
+body {
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    background: 
+        radial-gradient(ellipse at center, rgba(0,255,65,0.02) 0%, transparent 70%),
+        linear-gradient(45deg, #0a0a0a 0%, #111111 100%);
+    color: var(--foreground);
+    overflow-x: hidden;
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+/* Utility Classes */
+.min-h-screen { min-height: 100vh; }
+.relative { position: relative; }
+.fixed { position: fixed; }
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+.opacity-10 { opacity: 0.1; }
+.opacity-0 { opacity: 0; }
+.pointer-events-none { pointer-events: none; }
+.z-10 { z-index: 10; }
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.w-full { width: 100%; }
+.w-3 { width: 0.75rem; }
+.w-32 { width: 8rem; }
+.h-1 { height: 0.25rem; }
+.h-3 { height: 0.75rem; }
+.max-w-2xl { max-width: 42rem; }
+.max-w-lg { max-width: 32rem; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.mr-3 { margin-right: 0.75rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 0.75rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+.mb-12 { margin-bottom: 3rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-8 { margin-top: 2rem; }
+.p-4 { padding: 1rem; }
+.p-8 { padding: 2rem; }
+.px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+.px-8 { padding-left: 2rem; padding-right: 2rem; }
+.py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.rounded-lg { border-radius: 0.5rem; }
+.rounded-full { border-radius: 9999px; }
+.border-2 { border-width: 2px; }
+.border-gray-600 { border-color: #4b5563; }
+.bg-terminal { background-color: var(--terminal-bg); }
+.bg-matrix { background-color: var(--matrix); }
+.bg-gray-700 { background-color: #374151; }
+.text-sm { font-size: 0.875rem; }
+.text-lg { font-size: 1.125rem; }
+.text-xl { font-size: 1.25rem; }
+.text-2xl { font-size: 1.5rem; }
+.text-4xl { font-size: 2.25rem; }
+.text-gray-400 { color: #9ca3af; }
+.text-gray-500 { color: #6b7280; }
+.text-white { color: white; }
+.text-black { color: black; }
+.font-mono { font-family: 'JetBrains Mono', 'Courier New', monospace; }
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+.italic { font-style: italic; }
+.tracking-wider { letter-spacing: 0.05em; }
+.cursor-not-allowed { cursor: not-allowed; }
+.block { display: block; }
+.hidden { display: none; }
+.space-y-4 > * + * { margin-top: 1rem; }
+.space-y-6 > * + * { margin-top: 1.5rem; }
+.transform { transform: translateX(0) translateY(0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1); }
+.scale-75 { transform: scale(0.75); }
+.translate-y-5 { transform: translateY(1.25rem); }
+.transition-all { transition: all 0.3s; }
+.transition-opacity { transition: opacity 0.3s; }
+.duration-300 { transition-duration: 300ms; }
+.duration-500 { transition-duration: 500ms; }
+.duration-800 { transition-duration: 800ms; }
+
+/* Responsive Design */
+@media (min-width: 768px) {
+    .md\:text-2xl { font-size: 1.5rem; }
+    .md\:text-6xl { font-size: 3.75rem; }
+}
+
+/* Background Grid */
+.bg-grid {
+    background-image: 
+        linear-gradient(rgba(0,255,65,0.1) 1px, transparent 1px), 
+        linear-gradient(90deg, rgba(0,255,65,0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+/* Scanlines Effect */
+.scanlines::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(transparent 50%, rgba(0, 255, 65, 0.03) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.scanlines::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #0ff, transparent);
+    animation: scanline 2s linear infinite;
+    z-index: 1001;
+}
+
+/* Terminal Border Animation */
+.terminal-border {
+    background: linear-gradient(45deg, #0ff, #00ff41, #ff0080, #0ff);
+    background-size: 400% 400%;
+    animation: glow 3s ease-in-out infinite;
+    padding: 2px;
+    border-radius: 8px;
+}
+
+.terminal-inner {
+    background: #111111;
+    border-radius: 6px;
+}
+
+/* Text Effects */
+.text-glow {
+    text-shadow: 
+        0 0 5px currentColor,
+        0 0 10px currentColor,
+        0 0 15px currentColor,
+        0 0 20px currentColor;
+}
+
+.matrix-text {
+    color: var(--matrix);
+}
+
+.cyber-text {
+    color: var(--cyan);
+}
+
+.neon-pink-text {
+    color: var(--neon-pink);
+}
+
+/* Input Styling */
+.input-glow:focus {
+    box-shadow: 
+        0 0 20px rgba(0, 255, 65, 0.5),
+        inset 0 0 20px rgba(0, 255, 65, 0.1);
+    border-color: var(--matrix);
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 
+        0 0 20px rgba(0, 255, 65, 0.5),
+        inset 0 0 20px rgba(0, 255, 65, 0.1);
+    border-color: var(--matrix) !important;
+}
+
+/* Button Styling */
+button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+button:not(:disabled):hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 25px rgba(0, 255, 65, 0.3);
+}
+
+/* Gradient Backgrounds */
+.bg-gradient-to-r {
+    background: linear-gradient(to right, var(--from), var(--to));
+}
+
+.from-cyan { --from: var(--cyan); }
+.to-matrix { --to: var(--matrix); }
+.from-matrix { --from: var(--matrix); }
+.to-cyan { --to: var(--cyan); }
+.from-transparent { --from: transparent; }
+.via-matrix { --via: var(--matrix); }
+.to-transparent { --to: transparent; }
+
+.bg-gradient-to-r.from-transparent.via-matrix.to-transparent {
+    background: linear-gradient(to right, transparent, var(--matrix), transparent);
+}
+
+.bg-gradient-to-r.from-cyan.to-matrix {
+    background: linear-gradient(to right, var(--cyan), var(--matrix));
+}
+
+.bg-gradient-to-r.from-matrix.to-cyan {
+    background: linear-gradient(to right, var(--matrix), var(--cyan));
+}
+
+button.bg-gradient-to-r:hover.from-matrix.to-cyan {
+    background: linear-gradient(to right, var(--matrix), var(--cyan));
+}
+
+/* Animations */
+@keyframes glow {
+    0% { 
+        background-position: 0% 50%;
+        box-shadow: 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff;
+    }
+    50% {
+        background-position: 100% 50%;
+        box-shadow: 0 0 20px #00ff41, 0 0 30px #00ff41, 0 0 40px #00ff41;
+    }
+    100% { 
+        background-position: 0% 50%;
+        box-shadow: 0 0 20px #ff0080, 0 0 30px #ff0080, 0 0 40px #ff0080;
+    }
+}
+
+@keyframes scanline {
+    0% { top: 0%; }
+    100% { top: 100%; }
+}
+
+@keyframes flicker {
+    0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% { 
+        opacity: 0.99;
+        filter: drop-shadow(0 0 1px rgba(0, 255, 65, 0.4)) drop-shadow(0 0 15px rgba(0, 255, 65, 0.1)) drop-shadow(0 0 25px rgba(0, 255, 65, 0.1));
+    }
+    20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+        opacity: 0.4;
+        filter: none;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Animation Classes */
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-flicker {
+    animation: flicker 0.15s infinite linear;
+}
+
+.animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+/* Page Load Animations */
+.header-animation {
+    animation: fadeInScale 1s ease-out;
+}
+
+.terminal-animation {
+    animation: fadeInScale 0.8s ease-out 0.5s both;
+}
+
+.footer-animation {
+    animation: fadeInUp 1s ease-out 1s both;
+}
+
+/* Message Animation Classes */
+.message-fade-in {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.message-slide-in {
+    animation: slideInLeft 0.5s ease-out;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Hover Effects */
+button:not(:disabled):hover.bg-gradient-to-r {
+    box-shadow: 0 10px 25px rgba(0, 255, 65, 0.3);
+}
+
+button.bg-gray-700:hover {
+    background-color: #4b5563;
+}
+
+/* Focus States */
+input:focus {
+    box-shadow: 
+        0 0 20px rgba(0, 255, 65, 0.5),
+        inset 0 0 20px rgba(0, 255, 65, 0.1);
+    border-color: var(--matrix);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .p-8 { padding: 1.5rem; }
+    .px-6 { padding-left: 1rem; padding-right: 1rem; }
+    .text-4xl { font-size: 2rem; }
+    .text-2xl { font-size: 1.25rem; }
+}
