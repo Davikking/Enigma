@@ -37,7 +37,7 @@ function init() {
         accessCode: document.getElementById('accessCode'),
         verifyBtn: document.getElementById('verify-btn'),
         errorMessage: document.getElementById('error-message'),
-        inputSection: document.getElementById('input-section'),
+        inputSection: document.getElementById('accessCode'),
         successSection: document.getElementById('success-section'),
         accessAccepted: document.getElementById('access-accepted'),
         messageContainer: document.getElementById('message-container'),
